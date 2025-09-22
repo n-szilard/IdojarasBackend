@@ -1,0 +1,13 @@
+### GET all users
+GET http://localhost:3000/users
+Content-Type: application/json
+
+### POST new user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Teszt elek",
+    "email": "test@tester.hu",
+    "password": "Jelszo123"
+}

@@ -1,0 +1,31 @@
+const express = require('express');
+const router = express.Router();
+const {users, saveUsers, isEmailExists, getNextUserID} = require('../utils/store')
+
+// GET all users
+router.get('/', (req, res) => {
+    res.send(users)
+});
+
+// POST new user
+router.post('/', (req, res) => {
+    let data = req.body;
+    if (isEmailExists(data.email)) {
+        return res.status(400).send({msg: 'Ez az email cím már regisztálva!'});
+    }
+    users.push(data);
+    data.id = getNextUserID();
+    saveUsers();
+    res.status(200).send({msg: 'Felhasználó regisztrálva'});
+});
+
+router.get('/:id', (req, res) => {
+    let id = req.params.id;
+    let idx = users.findIndex(user => user.id == id);
+    if (idx > -1) {
+        return res.status(200).send(users[idx]);
+    }
+    return res.status(400).send({msg: "Nincs ilyen azonosítójú felhasználó!"})
+});
+
+module.exports = router;
