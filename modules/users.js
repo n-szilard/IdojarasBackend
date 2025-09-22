@@ -19,6 +19,7 @@ router.post('/', (req, res) => {
     res.status(200).send({msg: 'Felhasználó regisztrálva'});
 });
 
+// GET user by id
 router.get('/:id', (req, res) => {
     let id = req.params.id;
     let idx = users.findIndex(user => user.id == id);
@@ -26,6 +27,19 @@ router.get('/:id', (req, res) => {
         return res.status(200).send(users[idx]);
     }
     return res.status(400).send({msg: "Nincs ilyen azonosítójú felhasználó!"})
+});
+
+// POST user check login
+router.post('/login', (req, res) => {
+    let { email, password } = req.body;
+    let loggedUser = {};
+    users.forEach(user => {
+        if (user.email == email && user.password == password) {
+            loggedUser = user;
+            return;
+        }
+    });
+    res.send(loggedUser);
 });
 
 module.exports = router;
