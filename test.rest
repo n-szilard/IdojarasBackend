@@ -11,3 +11,14 @@ Content-Type: application/json
     "email": "test@tester.hu",
     "password": "Jelszo123"
 }
+
+
+### PATCH user name and email
+PATCH http://localhost:3000/users/profile
+Content-Type: application/json
+
+{
+    "id": 4,
+    "name": "Teszter ember",
+    "email": "a@a.hu"
+}

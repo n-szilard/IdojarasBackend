@@ -42,4 +42,27 @@ router.post('/login', (req, res) => {
     res.send(loggedUser);
 });
 
+// UPDATE user email and name
+router.patch('/profile', (req, res) => {
+    let { id, email, name} = req.body;
+    let idx = users.findIndex(user => user.id == id);
+    if (idx === -1) {
+        return res.status(400).send({msg: "Nincs ilyen azonosítójú felhasználó!"});
+    }
+
+    if (email !== users[idx].email) {
+        if (isEmailExists(email)) {
+            return res.status(400).send({msg: 'Ez az email már regisztrálva van.'});
+        }
+        users[idx].email = email;
+    }
+
+    if (name) {
+        users[idx].name = name;
+    }
+
+    saveUsers();
+    res.status(200).send({msg: 'A felhasználó módosítva'});
+});
+
 module.exports = router;
