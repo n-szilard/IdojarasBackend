@@ -3,6 +3,7 @@ const fs = require('fs');
 const cors = require('cors');
 
 const userRoutes = require('./modules/users');
+const weatherRoutes = require('./modules/weathers');
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', userRoutes);
+app.use('/weather', weatherRoutes);
+
 
 app.listen(3000, () => {
     console.log('Server listening on http://localhost:3000');

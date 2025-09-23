@@ -1,0 +1,18 @@
+### GET all weathers
+GET http://localhost:3000/weather
+Content-Type: application/json
+
+
+### POST new weather
+POST http://localhost:3000/weather
+Content-Type: application/json
+
+{
+    "uid": 4,
+    "min": 2,
+    "max": 23,
+    "szazalek": 35,
+    "mm": 10,
+    "datum": "2025-09-25",
+    "tipus": "tornado"
+}
