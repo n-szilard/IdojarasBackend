@@ -19,6 +19,17 @@ Content-Type: application/json
 
 {
     "id": 4,
-    "name": "Teszter ember",
+    "name": "Teszter mber",
     "email": "a@a.hu"
+}
+
+
+### PATCH user pass
+PATCh http://localhost:3000/users/password
+Content-Type: application/json
+
+{
+    "id": 4,
+    "currentPass": "Jelszo123",
+    "newPass": "Jelszo123"
 }

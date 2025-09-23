@@ -62,7 +62,32 @@ router.patch('/profile', (req, res) => {
     }
 
     saveUsers();
-    res.status(200).send({msg: 'A felhasználó módosítva'});
+    res.status(200).send({
+        msg: 'A felhasználó módosítva',
+        newName: name,
+        newEmail: email
+    });
 });
+
+// UPDATE password by id
+router.patch('/password', (req, res) => {
+    let {id, currentPass, newPass} = req.body;
+    let idx = users.findIndex(user => user.id == id);
+    if (idx === -1) {
+        return res.status(400).send({msg: 'Nincs ilyen azonosítójú felhasználó!'});
+    }
+
+    if (currentPass == newPass) {
+        return res.status(400).send({msg: 'A régi jelszó nem lehet ugyan az mint az új!'})
+    }
+
+    if (users[idx].password == currentPass) {
+        users[idx].password = newPass;
+        saveUsers();
+        return res.status(200).send({msg: 'A felhasználó jelszava módosítva!'})
+    } else {
+        return res.status(400).send({msg: 'A megadott jelszó nem egyezik!'});
+    }
+})
 
 module.exports = router;
