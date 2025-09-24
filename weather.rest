@@ -21,3 +21,27 @@ Content-Type: application/json
 ### GET all weathers by uid
 GET http://localhost:3000/weather/4
 Content-Type: application/json
+
+
+### DELETE weather by id
+DELETE http://localhost:3000/weather/del
+Content-Type: application/json
+
+{
+    "id": 5
+}
+
+### PATCH weather by id and uid
+PATCH http://localhost:3000/weather/modify
+Content-Type: application/json
+
+{
+    "id": 2,
+    "uid": 4,
+    "min": 224,
+    "max": 305,
+    "szazalek": 55,
+    "mm": 12,
+    "datum": "2025-10-30",
+    "tipus": "tornado"
+}
