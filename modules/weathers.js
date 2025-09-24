@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         weathers.push(data);
         data.id = getNextWeatherID();
         saveWeather();
-        res.send({msg: 'Időjárás jelentés sikeresen felvéve!'})
+        res.status(200).send({msg: 'Időjárás jelentés sikeresen felvéve!'})
     }
 });
 
