@@ -19,15 +19,6 @@ router.post('/', (req, res) => {
     res.status(200).send({msg: 'Felhasználó regisztrálva'});
 });
 
-// GET user by id
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    let idx = users.findIndex(user => user.id == id);
-    if (idx > -1) {
-        return res.status(200).send(users[idx]);
-    }
-    return res.status(400).send({msg: "Nincs ilyen azonosítójú felhasználó!"})
-});
 
 // POST user check login
 router.post('/login', (req, res) => {
@@ -40,6 +31,16 @@ router.post('/login', (req, res) => {
         }
     });
     res.send(loggedUser);
+});
+
+// GET user by id
+router.get('/:id', (req, res) => {
+    let id = req.params.id;
+    let idx = users.findIndex(user => user.id == id);
+    if (idx > -1) {
+        return res.status(200).send(users[idx]);
+    }
+    return res.status(400).send({msg: "Nincs ilyen azonosítójú felhasználó!"})
 });
 
 // UPDATE user email and name
